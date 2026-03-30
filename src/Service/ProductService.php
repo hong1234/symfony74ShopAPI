@@ -8,6 +8,7 @@ use App\Entity\Product;
 use App\Entity\Category;
 
 class ProductService {
+    
     private $validator;
     private $entityManager;
     

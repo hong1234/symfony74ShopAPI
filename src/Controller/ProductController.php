@@ -15,6 +15,7 @@ use App\Service\DaoService;
 
 #[Route('/api')]
 class ProductController extends AbstractController {
+    
     private $daoService;
     private $productService;
     

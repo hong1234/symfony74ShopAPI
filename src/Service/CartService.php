@@ -9,6 +9,7 @@ use App\Entity\CartItem;
 use App\Entity\Product;
 
 class CartService {
+    
     private $entityManager;
     
     function __construct(EntityManagerInterface $entityManager) {

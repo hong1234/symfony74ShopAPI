@@ -1,6 +1,6 @@
-## rest API for Shop using symfony 7.4
+# rest API for Shop using symfony 7.4
 
-# install
+## install
 
 git clone https://github.com/hong1234/symfony74ShopAPI.git
 
@@ -8,13 +8,21 @@ cd symfony74ShopAPI
 
 composer install
 
-# run server
+## database migration
+
+// php bin/console make:entity // make entity
+
+php bin/console make:migration
+
+php bin/console doctrine:migrations:migrate
+
+## run server
 
 // php -S localhost:8000 -t public/
 
-symfony server:start
+symfony server:start --no-tls
 
-# service endpoints
+## service endpoints
 
 // get cart of customer id = 2
 

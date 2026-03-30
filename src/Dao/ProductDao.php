@@ -3,7 +3,6 @@ namespace App\Dao;
 
 class ProductDao extends BaseDao {
 
-
     public function searchProducts(string $key) : array
     {
         $sql = "SELECT * FROM product WHERE title LIKE :searchkey";

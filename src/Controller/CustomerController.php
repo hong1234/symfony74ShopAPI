@@ -12,6 +12,7 @@ use App\Service\DaoService;
 
 #[Route('/api')]
 class CustomerController extends AbstractController {
+    
     private $daoService;
     
     public function __construct(DaoService $daoService)
