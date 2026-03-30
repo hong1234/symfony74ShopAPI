@@ -15,6 +15,7 @@ use App\Entity\Cart;
 use App\Entity\Customer;
 use App\Entity\Category;
 use App\Entity\Product;
+use App\Entity\Order;
 
 use App\Service\CartService; 
 
@@ -35,6 +36,43 @@ class CartController extends AbstractController {
              throw new \Exception('invalid json data in request body');
         }
         return $data;
+    }
+
+    #[Route('/carts/{customerId}/checkout', name: 'checkout_cart', methods: ['GET'])]
+    public function checkoutCart(int $customerId): JsonResponse
+    {
+        $rs = [
+            'status' => '400',
+            'data'   => []
+        ];
+        
+        try {
+            $order = $this->cartService->checkoutCart($customerId);
+            $items = [];
+            foreach ($order->getOrderItems() as $item) {
+                array_push($items, [
+                    'Qty'       => $item->getQty(),
+                    'productId' => $item->getProduct()->getId(),
+                    'product'   => $item->getProduct()->getTitle(),
+                    'unitPrice' => $item->getProduct()->getPrice()
+                ]);
+            }
+
+            $rs['status'] = '200';
+            $rs['data'] = [
+                'OrderId'    => $order->getId(),
+                'CustomerId' => $order->getCustomer()->getId(),
+                'Total-Sum'  => $order->getTotalPrice(),
+                'Items-Sum'  => $order->getItemsPrice(),
+                'Ship-cost'  => $order->getShipmentPrice(),
+                'items'      => $items
+            ];
+
+        } catch (\Exception $e) {
+            $rs['data'] = ['errors' => $e->getMessage()];
+        }
+
+        return $this->json($rs);     
     }
 
     #[Route('/carts/{customerId}', name: 'get_cart', methods: ['GET'])]

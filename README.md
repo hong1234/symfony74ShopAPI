@@ -46,6 +46,10 @@ PUT http://localhost:8000/api/cart/2
 "productId": 13
 }
 
+// checkout the cart of customer id = 2
+
+GET http://localhost:8000/api/carts/2/checkout
+
 // add a new product to catalog
 
 POST http://localhost:8000/api/products
