@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-// use App\Dao\BookDao;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Service\ProductService;
